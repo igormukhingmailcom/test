@@ -1,0 +1,28 @@
+language: php
+
+php:
+  - 5.3
+
+branches:
+  only:
+    # We keep our development progress under master branch
+    # So automated deployment configured to use only this branch
+    - master
+
+env:
+  secure: PBHb2LSczHuIU0o7QxwZlupEebCfPzngOSqLxnZwVx3pS8HKE/1eYR/hwfkStKRm1DBaw9zIooyo2kiv7du+O9pL7cUq+gg6IFKaSdk62iZdMNkDFatDzscYW9ONX492T7yjlcLuk42vMRkfv/Nk/SIgxcMN3Bfq8/4SSNHgJ3XwFDPmshGmDthdWs1oTiEkGXzj5YuajRTg/hQq2+hXtk729GrWUSecVxczZ4Ex22X9mMmEG4eFgG6+FZl4wShenbLyUlgfJMCJiAYHq6tCfOqdxUymShAN0xCYZ4TY4nbhW33YC3V3gYWvB0sIrkfDei7R07fTVuo83lrQ67B/bQ==
+
+before_install:
+  - composer config -g github-oauth.github.com $MY_GITHUB_TOKEN
+
+before_script:
+  - composer self-update # composer install can fail on shippable servers without this
+  - composer install --no-dev
+  - mkdir -p shippable/codecoverage
+  - mkdir -p shippable/testresults
+
+script:
+   - phpunit --log-junit shippable/testresults/junit.xml --coverage-xml shippable/codecoverage
+
+notifications:
+   email: igor.mukhin@gmail.com
