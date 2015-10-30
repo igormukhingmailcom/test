@@ -10,6 +10,7 @@ php:
 #   - composer config -g github-oauth.github.com $MY_GITHUB_TOKEN
 
 before_script:
+  - /home/shippable/.phpenv/versions/5.3/composer/composer.phar self-update
   - composer install
   - mkdir -p shippable/codecoverage
   - mkdir -p shippable/testresults
