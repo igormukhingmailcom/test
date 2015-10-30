@@ -22,3 +22,7 @@ or
 docker-compose up
 open http://$(docker-machine ip default 2>/dev/null):8080
 ```
+
+## To read
+
+- http://docs.shippable.com/autodeploy-to-ebs/
