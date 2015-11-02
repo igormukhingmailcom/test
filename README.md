@@ -4,7 +4,7 @@
 
 Application configured for **automatic deployment** to `staging` environment at AWS EB thanks to [Shippable](https://shippable.com).
 
-Shippable run tests and deploy to EB `staging` environment only if `phpunit` tests passed.
+Shippable run tests, build docker image, push image to `hub.docker.com` and deploy image to EB `staging` environment only if `phpunit` tests passed.
 
 Once QA guys confirm that all OK on `staging` server, you can deploy it to `production` EB environment.
 
@@ -34,13 +34,13 @@ Currently we're using `us-west-2` region.
 3. Run next command to deploy given <VERSION> to EB `production` environment:
 
 ```
-aws elasticbeanstalk update-environment --environment-name production --version-label <VERSION>
+bin/deploy.sh <VERSION>
 ```
 
 For  example:
 
 ```
-aws elasticbeanstalk update-environment --environment-name production --version-label shippable.igormukhin.test.master.23
+bin/deploy.sh 23
 ```
 
 ## Run app on Docker at Mac OSX
