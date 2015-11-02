@@ -37,7 +37,7 @@ Currently we're using `us-west-2` region.
 aws elasticbeanstalk update-environment --environment-name production --version-label <VERSION>
 ```
 
-For example:
+For  example:
 
 ```
 aws elasticbeanstalk update-environment --environment-name production --version-label shippable.igormukhin.test.master.23
